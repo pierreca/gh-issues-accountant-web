@@ -8,6 +8,11 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+var DocumentDBClient = require('documentdb').DocumentClient;
+var config = require('./config');
+var IssueCountList = require('./routes/issueCountlist');
+var IssueCountByLabelDao = require('./models/issueCountByLabelDao');
+
 var app = express();
 
 // view engine setup
@@ -22,8 +27,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+var docDbClient = new DocumentDBClient(config.host, {
+    masterKey: config.authKey
+});
+
+var issueCountByLabelDao = new IssueCountByLabelDao(docDbClient, config.databaseId, config.collectionId);
+var issueCountList = new IssueCountList(issueCountByLabelDao);
+issueCountByLabelDao.init();
+
+app.get('/', issueCountList.showIssueCountReports.bind(issueCountList));
+app.set('view engine', 'jade');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
