@@ -1,23 +1,15 @@
 extends layout
 block content
-   h1 #{title}
-   br
 
-   table.table.table-striped.table-bordered
-     tr
-       td Repository Name
-       td Total
-       td Date
-     if (typeof reports === "undefined")
-       tr
-         td
-     else
-       each report in reports
-         tr
-           td #{report.name}
-           td #{report.total}
-           - var date  = new Date(report.at);
-           - var day   = date.getDate();
-           - var month = date.getMonth() + 1;
-           - var year  = date.getFullYear();
-           td #{month + "/" + day + "/" + year}
+  each repo in ['azure-iot-sdk-node', 'azure-iot-sdk-c', 'azure-iot-sdk-csharp', 'azure-iot-sdk-python', 'azure-iot-sdk-java', 'iothub-explorer', 'iothub-diagnostics']
+    h2 #{repo}
+    h4 
+      p #[a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open') #{reports[repo][0].total + ' open issues'}] as of #{moment(reports[repo][0].at).fromNow() + ' (' + new Date(reports[repo][0].at).toLocaleString() + ')'}
+    table.table.table-striped.table-bordered
+      tr
+        each label in ['bug', 'build issue', 'investigation required', 'help wanted', 'enhancement', 'question', 'documentation']
+          th #{label}
+        tr
+          each label in ['bug', 'build issue', 'investigation required', 'help wanted', 'enhancement', 'question', 'documentation']
+            td
+              a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open%20label:' + label) #{reports[repo][0][label]}

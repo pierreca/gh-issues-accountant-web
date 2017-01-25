@@ -14,6 +14,7 @@ var IssueCountList = require('./routes/issueCountlist');
 var IssueCountByLabelDao = require('./models/issueCountByLabelDao');
 
 var app = express();
+app.locals.moment = require('moment');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
