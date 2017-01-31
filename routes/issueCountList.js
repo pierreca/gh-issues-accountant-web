@@ -16,7 +16,12 @@ IssueCountList.prototype = {
       'azure-iot-sdk-csharp',
       'azure-iot-sdk-java',
       'iothub-explorer',
-      'iothub-diagnostics'
+      'iothub-diagnostics',
+      'azure-iot-sdks',
+      'azure-iot-gateway-sdk',
+      'azure-uamqp-c',
+      'azure-umqtt-c',
+      'azure-ctest',
     ];
 
     function getReports (repo, callback) {

@@ -34,7 +34,9 @@ var docDbClient = new DocumentDBClient(config.host, {
 
 var issueCountByLabelDao = new IssueCountByLabelDao(docDbClient, config.databaseId, config.collectionId);
 var issueCountList = new IssueCountList(issueCountByLabelDao);
-issueCountByLabelDao.init();
+issueCountByLabelDao.init(function(err) {
+  if (err) console.error(err.toString());
+});
 
 app.get('/', issueCountList.showIssueCountReports.bind(issueCountList));
 app.set('view engine', 'jade');

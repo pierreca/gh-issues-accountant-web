@@ -1,7 +1,106 @@
 extends layout
 block content
 
-  each repo in ['azure-iot-sdk-node', 'azure-iot-sdk-c', 'azure-iot-sdk-csharp', 'azure-iot-sdk-python', 'azure-iot-sdk-java', 'iothub-explorer', 'iothub-diagnostics']
+  a(name="c-sdks")
+  hr
+  h1 C SDKs, submodules and wrappers
+  each repo in ['azure-iot-sdk-c', 'azure-uamqp-c', 'azure-umqtt-c', 'azure-ctest']
+    h3 #{repo}
+    h4 
+      p #[a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open') #{reports[repo][0].total + ' open issues'}] as of #{moment(reports[repo][0].at).fromNow() + ' (' + new Date(reports[repo][0].at).toLocaleString() + ')'}
+    table.table.table-striped.table-bordered
+      tr
+        each label in ['bug', 'build issue', 'investigation required', 'help wanted', 'enhancement', 'question', 'documentation']
+          th #{label}
+        tr
+          each label in ['bug', 'build issue', 'investigation required', 'help wanted', 'enhancement', 'question', 'documentation']
+            td
+              a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open%20label:' + label) #{reports[repo][0][label]}
+
+  a(name="python-sdks")
+  hr
+  h1 Python SDKs (wrapper)
+  each repo in ['azure-iot-sdk-python']
+    h3 #{repo}
+    h4 
+      p #[a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open') #{reports[repo][0].total + ' open issues'}] as of #{moment(reports[repo][0].at).fromNow() + ' (' + new Date(reports[repo][0].at).toLocaleString() + ')'}
+    table.table.table-striped.table-bordered
+      tr
+        each label in ['bug', 'build issue', 'investigation required', 'help wanted', 'enhancement', 'question', 'documentation']
+          th #{label}
+        tr
+          each label in ['bug', 'build issue', 'investigation required', 'help wanted', 'enhancement', 'question', 'documentation']
+            td
+              a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open%20label:' + label) #{reports[repo][0][label]}
+
+  a(name="gateway-sdks")
+  hr
+  h1 Gateway SDKs
+  each repo in ['azure-iot-gateway-sdk']
+    h3 #{repo}
+    h4 
+      p #[a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open') #{reports[repo][0].total + ' open issues'}] as of #{moment(reports[repo][0].at).fromNow() + ' (' + new Date(reports[repo][0].at).toLocaleString() + ')'}
+    table.table.table-striped.table-bordered
+      tr
+        each label in ['bug', 'build issue', 'investigation required', 'help wanted', 'enhancement', 'question', 'documentation']
+          th #{label}
+        tr
+          each label in ['bug', 'build issue', 'investigation required', 'help wanted', 'enhancement', 'question', 'documentation']
+            td
+              a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open%20label:' + label) #{reports[repo][0][label]}
+
+  a(name="node-sdks")
+  hr
+  h1 Node SDKs and tools
+  each repo in ['azure-iot-sdk-node', 'iothub-explorer', 'iothub-diagnostics']
+    h3 #{repo}
+    h4 
+      p #[a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open') #{reports[repo][0].total + ' open issues'}] as of #{moment(reports[repo][0].at).fromNow() + ' (' + new Date(reports[repo][0].at).toLocaleString() + ')'}
+    table.table.table-striped.table-bordered
+      tr
+        each label in ['bug', 'build issue', 'investigation required', 'help wanted', 'enhancement', 'question', 'documentation']
+          th #{label}
+        tr
+          each label in ['bug', 'build issue', 'investigation required', 'help wanted', 'enhancement', 'question', 'documentation']
+            td
+              a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open%20label:' + label) #{reports[repo][0][label]}
+
+  a(name="csharp-sdks")
+  hr
+  h1 C# SDKs
+  each repo in ['azure-iot-sdk-csharp']
+    h3 #{repo}
+    h4 
+      p #[a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open') #{reports[repo][0].total + ' open issues'}] as of #{moment(reports[repo][0].at).fromNow() + ' (' + new Date(reports[repo][0].at).toLocaleString() + ')'}
+    table.table.table-striped.table-bordered
+      tr
+        each label in ['bug', 'build issue', 'investigation required', 'help wanted', 'enhancement', 'question', 'documentation']
+          th #{label}
+        tr
+          each label in ['bug', 'build issue', 'investigation required', 'help wanted', 'enhancement', 'question', 'documentation']
+            td
+              a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open%20label:' + label) #{reports[repo][0][label]}
+
+  a(name="java-sdks")
+  hr
+  h1 Java SDKs
+  each repo in ['azure-iot-sdk-java']
+    h3 #{repo}
+    h4 
+      p #[a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open') #{reports[repo][0].total + ' open issues'}] as of #{moment(reports[repo][0].at).fromNow() + ' (' + new Date(reports[repo][0].at).toLocaleString() + ')'}
+    table.table.table-striped.table-bordered
+      tr
+        each label in ['bug', 'build issue', 'investigation required', 'help wanted', 'enhancement', 'question', 'documentation']
+          th #{label}
+        tr
+          each label in ['bug', 'build issue', 'investigation required', 'help wanted', 'enhancement', 'question', 'documentation']
+            td
+              a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open%20label:' + label) #{reports[repo][0][label]}
+
+  a(name="deprecated-sdks")
+  hr
+  h1 Deprecated
+  each repo in ['azure-iot-sdks']
     h2 #{repo}
     h4 
       p #[a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open') #{reports[repo][0].total + ' open issues'}] as of #{moment(reports[repo][0].at).fromNow() + ' (' + new Date(reports[repo][0].at).toLocaleString() + ')'}
@@ -13,3 +112,4 @@ block content
           each label in ['bug', 'build issue', 'investigation required', 'help wanted', 'enhancement', 'question', 'documentation']
             td
               a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open%20label:' + label) #{reports[repo][0][label]}
+
