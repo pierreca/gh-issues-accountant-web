@@ -8,6 +8,8 @@ block content
     h3 #{repo}
     h4 
       p #[a(href='https://github.com/azure/' + repo + '/issues?q=is:issue%20is:open') #{reports[repo][0].total + ' open issues'}] as of #{moment(reports[repo][0].at).fromNow() + ' (' + new Date(reports[repo][0].at).toLocaleString() + ')'}
+      p #[a(href='https://github.com/azure/' + repo + '/pulls') #{reports[repo][0].pull_request + ' open pull requests'}] as of #{moment(reports[repo][0].at).fromNow() + ' (' + new Date(reports[repo][0].at).toLocaleString() + ')'}
+      p #[a(href='https://github.com/azure/' + repo + '/issues?q=is:open%20%20updated%3A<%3D' + moment(reports[repo][0].at).subtract(7, 'days').format('YYYY-MM-DD')) #{reports[repo][0].stale_7days + ' issues or pull requests not updated in the past 7 days'}] as of #{moment(reports[repo][0].at).fromNow() + ' (' + new Date(reports[repo][0].at).toLocaleString() + ')'}
     table.table.table-striped.table-bordered
       tr
         each label in ['bug', 'build issue', 'investigation required', 'help wanted', 'enhancement', 'question', 'documentation']
