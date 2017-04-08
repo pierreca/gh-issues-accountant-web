@@ -22,6 +22,10 @@ IssueCountList.prototype = {
       'azure-uamqp-c',
       'azure-umqtt-c',
       'azure-ctest',
+      'azure-iot-arduino',
+      'azure-iot-arduino-utility',
+      'azure-iot-arduino-protocol-http',
+      'azure-iot-arduino-protocol-mqtt'
     ];
 
     function getReports (repo, callback) {
